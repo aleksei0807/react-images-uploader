@@ -1,4 +1,4 @@
-# Boilerplate from React Components
+# React Components Boilerplate
 
 ## Getting started
 
@@ -12,6 +12,7 @@
 
 `git push origin master`
 
+Write code of your component in `src/index.jsx`. Base styles for your component - `styles/style.styl`. Style themes for your component - `styles/themes`. Put your component's examples in `examples/src` and `examples/pages`.
 
 ## Run build
 
@@ -22,4 +23,4 @@
 
 `npm run watch-styles` for watching styles.
 
-`npm run watch-examples` for watching files in "/examples/src"
+`npm run watch-examples` for watching files in `/examples/src`
