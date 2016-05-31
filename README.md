@@ -16,3 +16,10 @@
 ## Run build
 
 `npm run build`
+
+
+## Run watch
+
+`npm run watch-styles` for watching styles.
+
+`npm run watch-examples` for watching files in "/examples/src"
