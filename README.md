@@ -11,3 +11,8 @@
 `git remote add origin https://github.com/username/component-name.git`
 
 `git push origin master`
+
+
+## Run build
+
+`npm run build`
