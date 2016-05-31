@@ -20,3 +20,7 @@ gulp.task('themes', function () {
 });
 
 gulp.task('default', ['styles', 'themes']);
+
+gulp.task('watch', function () {
+	gulp.watch(['./styles/*.styl', './styles/themes/**/*.styl'], ['default']);
+});
