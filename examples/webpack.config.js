@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const RemoveWebpackPlugin = require('remove-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -14,7 +13,6 @@ module.exports = {
 	},
 
 	plugins: [
-		new RemoveWebpackPlugin('./build'),
 		new webpack.NoErrorsPlugin()
 	],
 
