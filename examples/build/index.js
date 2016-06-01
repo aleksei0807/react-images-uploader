@@ -60,7 +60,7 @@
 
 	_reactDom2.default.render(_react2.default.createElement(
 		'ul',
-		null,
+		{ className: 'examples-ul' },
 		_react2.default.createElement(
 			'li',
 			null,

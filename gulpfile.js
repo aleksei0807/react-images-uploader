@@ -19,6 +19,14 @@ gulp.task('themes', function () {
     .pipe(gulp.dest('./examples/build/themes'));
 });
 
+gulp.task('examples-page-styles', function () {
+  return gulp.src('./examples/style.styl')
+    .pipe(stylus({
+      compress: true
+    }))
+    .pipe(gulp.dest('./examples'));
+});
+
 gulp.task('default', ['styles', 'themes']);
 
 gulp.task('watch', function () {

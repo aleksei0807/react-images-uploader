@@ -28,3 +28,7 @@ Write code of your component in `src/index.jsx`. Base styles for your component 
 `npm run watch-styles` for watching styles.
 
 `npm run watch-examples` for watching files in `/examples/src`
+
+## Build styles for examples page
+
+`gulp examples-page-styles`
