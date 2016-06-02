@@ -32,3 +32,7 @@ Write code of your component in `src/index.jsx`. Base styles for your component 
 ## Build styles for examples page
 
 `gulp examples-page-styles`
+
+## Demo examples
+
+[http://aleksei0807.github.io/react-components-boilerplate/](http://aleksei0807.github.io/react-components-boilerplate/)
