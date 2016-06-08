@@ -10,6 +10,10 @@
 
 `git remote add origin https://github.com/username/component-name.git`
 
+`git add .`
+
+`git commit -m "initial"`
+
 `git push origin master`
 
 Write your true name, version, description, keywords, author, bugs and homepage in package.json.
