@@ -16,6 +16,8 @@
 
 `git push origin master`
 
+`npm i` or `yarn`
+
 Write your true name, version, description, keywords, author, bugs and homepage in package.json.
 
 Write your name in LICENSE.
