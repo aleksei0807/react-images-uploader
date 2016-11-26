@@ -61,6 +61,18 @@ module.exports = {
 		  {
 			  test: /\.css$/,
 			  loader: postCssLoader.join('')
+		  }, {
+			  test: /\.png$/,
+			  loader: "file-loader?name=/images/[hash].[ext]"
+		  }, {
+			  test: /\.jpg$/,
+			  loader: "file-loader?name=/images/[hash].[ext]"
+		  }, {
+			  test: /\.gif$/,
+			  loader: "file-loader?name=/images/[hash].[ext]"
+		  }, {
+			  test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+			  loader: 'file-loader?name=/fonts/[hash].[ext]'
 		  }
 	  ]
 	},

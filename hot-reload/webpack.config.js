@@ -1,12 +1,15 @@
 /* eslint-disable */
+const PORT = process.env.PORT || '8181';
+console.log("Listening on", PORT);
+const path = require('path');
 const webpack = require('webpack');
-const RemoveWebpackPlugin = require('remove-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const functions = require('postcss-functions');
 const precss = require('precss');
 const atImport = require("postcss-import");
 const easyImport = require('postcss-easy-import');
 const postCssModules = require('postcss-modules');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const postCssLoader = [
 	'css-loader?modules',
@@ -17,18 +20,24 @@ const postCssLoader = [
 ];
 
 module.exports = {
-    entry: {
-        'index': "./src/index.jsx"
-    },
+	devtool: 'cheap-eval-source-map',
+	entry: [
+		'webpack-dev-server/client?http://localhost:' + PORT,
+		'webpack/hot/dev-server',
+		'./index.jsx'
+	],
 
 	output: {
-        path: './build',
-        filename: "[name].js"
+		path: path.join(__dirname, 'dist'),
+		filename: '/js/index.js'
 	},
 
 	plugins: [
-		new RemoveWebpackPlugin('./build'),
 		new webpack.NoErrorsPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new HtmlWebpackPlugin({
+			template: './index.html'
+		}),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 	      compress: {
@@ -59,8 +68,12 @@ module.exports = {
 			  test: /\.js$/, loader: "react-hot-loader!babel-loader", exclude: [/node_modules/, /lib/]
 		  },
 		  {
+			  test: /\.html$/,
+			  loader: 'raw-loader'
+		  },
+		  {
 			  test: /\.css$/,
-			  loader: postCssLoader.join('')
+			  loaders: ['style-loader', postCssLoader.join('')],
 		  }, {
 			  test: /\.png$/,
 			  loader: "file-loader?name=/images/[hash].[ext]"
@@ -88,12 +101,18 @@ module.exports = {
 			autoprefixer,
 			precss({
 				variables: {
-					variables: require('./src/styles/vars.css')
+					variables: require('../src/styles/vars.css')
 				}
 			}),
 			functions({
-				functions: require('./src/styles/funcs.css')
+				functions: require('../src/styles/funcs.css')
 			})
 		];
+	},
+	devServer: {
+		contentBase: './dist',
+		hot: true,
+		host: '0.0.0.0',
+		port: PORT
 	}
 };
