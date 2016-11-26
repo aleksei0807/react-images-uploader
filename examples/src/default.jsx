@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CustomComponent from '../../lib/index';

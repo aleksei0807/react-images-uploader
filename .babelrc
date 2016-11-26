@@ -1,6 +1,6 @@
 {
     "presets": ["react", "es2015", "stage-0", "stage-1", "stage-2", "stage-3"],
-    "plugins": ["react-hot-loader/babel", "transform-function-bind", "transform-class-properties", "transform-decorators-legacy", "transform-decorators",  ["transform-runtime", {
+    "plugins": ["react-hot-loader/babel", "transform-function-bind", "transform-class-properties", "transform-decorators-legacy", "transform-decorators", "transform-flow-strip-types",  ["transform-runtime", {
       "polyfill": false,
       "regenerator": true
     }]]
