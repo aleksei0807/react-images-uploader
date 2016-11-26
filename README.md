@@ -20,7 +20,7 @@ Write your true name, version, description, keywords, author, bugs and homepage 
 
 Write your name in LICENSE.
 
-Write code of your component in `src/index.jsx`. Base styles for your component - `styles/style.styl`. Style themes for your component - `styles/themes`. Put your component's examples in `examples/src` and `examples/pages`.
+Write code of your component in `src/index.jsx`. Base styles for your component - `src/styles/style.css`. Style themes for your component - `src/styles/themes`. Put your component's examples in `examples/src` and `examples/pages`.
 
 ## Run build
 
