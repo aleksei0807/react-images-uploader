@@ -1,19 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import CustomComponent from '../src/index';
-import CSSModules from 'react-css-modules';
-import styles from '../src/styles/index.css';
+import { AppContainer } from 'react-hot-loader';
+import App from './app';
 
-@CSSModules(styles)
-class App extends Component {
-	render() {
-		return (
-			<CustomComponent styleName="custom-component" />
-		);
-	}
-}
+const rootElement = document.getElementById('root');
 
 ReactDOM.render(
-	<App />,
-	document.getElementById('root')
+	<AppContainer>
+		<App />
+	</AppContainer>,
+	rootElement
 );
+
+if (module.hot) {
+	module.hot.accept('./app.jsx', () => {
+		const NextApp = require('./app').default;
+
+		ReactDOM.render(
+			(<AppContainer>
+				<NextApp />
+			</AppContainer>), rootElement
+		);
+	});
+}

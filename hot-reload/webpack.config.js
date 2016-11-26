@@ -22,8 +22,9 @@ const postCssLoader = [
 module.exports = {
 	devtool: 'cheap-eval-source-map',
 	entry: [
+		'react-hot-loader/patch',
 		'webpack-dev-server/client?http://localhost:' + PORT,
-		'webpack/hot/dev-server',
+		'webpack/hot/only-dev-server',
 		'./index.jsx'
 	],
 
@@ -62,10 +63,10 @@ module.exports = {
 	module: {
 	  loaders: [
 		  {
-			  test: /\.jsx$/, loader: "react-hot-loader!babel-loader", exclude: [/node_modules/, /lib/]
+			  test: /\.jsx$/, loader: "react-hot-loader/webpack!babel-loader", exclude: [/node_modules/, /lib/]
 		  },
 		  {
-			  test: /\.js$/, loader: "react-hot-loader!babel-loader", exclude: [/node_modules/, /lib/]
+			  test: /\.js$/, loader: "react-hot-loader/webpack!babel-loader", exclude: [/node_modules/, /lib/]
 		  },
 		  {
 			  test: /\.html$/,

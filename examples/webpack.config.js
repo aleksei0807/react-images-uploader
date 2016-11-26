@@ -17,9 +17,9 @@ const postCssLoader = [
 
 module.exports = {
     entry: {
-        'index': "./src/index.js",
-		'default': "./src/default.js",
-		'custom': "./src/custom.js"
+        'index': "./src/index.jsx",
+		'default': "./src/default.jsx",
+		'custom': "./src/custom.jsx"
     },
 
 	output: {
@@ -29,7 +29,6 @@ module.exports = {
 
 	plugins: [
 		new webpack.NoErrorsPlugin(),
-		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 	      compress: {
 	        warnings: false,
