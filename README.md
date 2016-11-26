@@ -28,6 +28,11 @@ Write code of your component in `src/index.jsx`. Base styles for your component 
 
 `npm run build`
 
+## Run dev server (hot reload)
+
+`npm run dev-server` or `PORT=8181 npm run dev-server`
+
+default port - 8181.
 
 ## Run watch
 
