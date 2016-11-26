@@ -1,0 +1,43 @@
+body {
+	background: url('./images/bg.jpg');
+}
+
+#root {
+	margin: 120px auto;
+	padding: 10px;
+	max-width: 420px;
+	border-top: 1px solid #FFF;
+	border-top: 5px solid rgba(#083b2d, 0.76);
+	border-bottom: 10px solid #F5F5F5;
+	border-radius: 0px;
+	background-color: #FFF;
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.examples-ul {
+	margin: 0;
+	padding: 0;
+
+	& li {
+		list-style: outside none none;
+
+		& a {
+			display: block;
+			margin: -1px -10px;
+			padding: 8px 8px 8px 14px;
+			outline: medium none;
+			border-top: 1px solid #EEE;
+			border-bottom: 1px solid #EEE;
+			color: #333;
+			text-decoration: none;
+			font-size: 14px;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out 0s;
+
+			&:hover {
+				background-color: #F6F6F6;
+				text-decoration: none;
+			}
+		}
+	}
+}

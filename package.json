@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib && webpack && cd ./examples/ && webpack && cd ../ && gulp",
-	"watch-styles": "gulp watch",
-	"watch-examples": "cd ./examples/ && webpack --watch"
+    "watch-styles": "gulp watch",
+    "watch-examples": "cd ./examples/ && webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "react": "^15.0.2"
   },
   "devDependencies": {
+    "autoprefixer": "^6.5.3",
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
@@ -46,8 +47,16 @@
     "babel-preset-stage-2": "^6.5.0",
     "babel-preset-stage-3": "^6.5.0",
     "babel-runtime": "^6.9.0",
+    "cssnano": "^3.8.1",
     "gulp": "^3.9.1",
+    "gulp-postcss": "^6.2.0",
     "gulp-stylus": "^2.3.1",
+    "postcss-easy-import": "^1.0.1",
+    "postcss-functions": "^2.1.1",
+    "postcss-import": "^8.2.0",
+    "postcss-loader": "^1.1.1",
+    "postcss-modules": "^0.5.2",
+    "precss": "^1.4.0",
     "react-dom": "^15.0.2",
     "react-hot-loader": "^1.3.0",
     "remove-webpack-plugin": "^1.1.1",
