@@ -1,5 +1,16 @@
 # React Components Boilerplate
 
+Boilerplate for React Components
+
+## Usage
+
+- React 15.4.1
+- PostCSS
+- CSSModules
+- flow
+- webpack dev server
+- react-hot-loader 3.0.0
+
 ## Getting started
 
 `git clone https://github.com/aleksei0807/react-components-boilerplate.git MyComponentDir`
