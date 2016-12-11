@@ -1,7 +1,7 @@
 {
-  "name": "react-components-boilerplate",
+  "name": "react-images-uploader",
   "version": "1.0.0",
-  "description": "Boilerplate from React Components",
+  "description": "React.js component for uploading images to the server",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,19 +12,34 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aleksei0807/react-components-boilerplate.git"
+    "url": "git+https://github.com/aleksei0807/react-images-uploader.git"
   },
   "keywords": [
-    "boilerplate",
     "react",
-    "components"
+    "components",
+	"images",
+	"image",
+	"uploader",
+	"uploading",
+	"server",
+	"load",
+	"loader",
+	"загрузка",
+	"картинок",
+	"изображений",
+	"файлов",
+	"загрузить",
+	"компонент",
+	"files",
+	"file",
+	"input"
   ],
   "author": "Aleksei Schurak",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aleksei0807/react-components-boilerplate/issues"
+    "url": "https://github.com/aleksei0807/react-images-uploader/issues"
   },
-  "homepage": "https://github.com/aleksei0807/react-components-boilerplate#readme",
+  "homepage": "https://github.com/aleksei0807/react-images-uploader#readme",
   "dependencies": {
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
