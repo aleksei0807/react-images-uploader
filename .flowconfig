@@ -1,10 +1,3 @@
-[ignore]
-.*/node_modules/fbjs/.*
-.*/node_modules/systemjs-builder/.*
-.*/node_modules/npm/.*
-.*/node_modules/react-swipeable-views/src/index.native.animated.js
-.*/node_modules/react-swipeable-views/src/index.native.scroll.js
-.*/node_modules/config-chain/test/broken.json
 [options]
 module.name_mapper.extension='css' -> '<PROJECT_ROOT>/flow/CSSModule.js.flow'
 module.name_mapper.extension='png' -> '<PROJECT_ROOT>/flow/CSSModule.js.flow'

@@ -13,7 +13,7 @@ ReactDOM.render(
 	rootElement
 );
 
-if (module.hot) {
+if (module.hot && typeof module.hot.accept === 'function') {
 	module.hot.accept('./app.jsx', () => {
 		const NextApp = require('./app').default;
 
