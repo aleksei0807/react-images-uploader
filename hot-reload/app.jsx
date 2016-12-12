@@ -6,7 +6,7 @@ import '../src/styles/styles.css';
 export default class App extends Component {
 	render() {
 		return (
-			<ImagesUploader />
+			<ImagesUploader optimisticPreviews />
 		);
 	}
 }

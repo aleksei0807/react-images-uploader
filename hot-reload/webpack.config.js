@@ -12,10 +12,8 @@ const postCssModules = require('postcss-modules');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const postCssLoader = [
-	'css-loader?modules',
-	'&importLoaders=1',
-	'&localIdentName=[name]__[local]___[hash:base64:5]',
-	'&disableStructuralMinification',
+	'style-loader',
+	'!css-loader',
 	'!postcss-loader'
 ];
 
@@ -74,7 +72,7 @@ module.exports = {
 		  },
 		  {
 			  test: /\.css$/,
-			  loader: 'style-loader!css-loader',
+			  loader: postCssLoader.join(''),
 		  }, {
 			  test: /\.png$/,
 			  loader: "file-loader?name=/images/[hash].[ext]"
@@ -94,10 +92,6 @@ module.exports = {
 		return [
 			atImport({
 				plugins: [easyImport],
-			}),
-			postCssModules({
-				scopeBehaviour: 'global',
-				generateScopedName: '[name]__[local]___[hash:base64:5]',
 			}),
 			autoprefixer,
 			precss({
