@@ -1,11 +1,12 @@
 /* @flow */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ImagesUploader from '../../lib/index';
+import '../../styles.css';
 
 ReactDOM.render(
-	<ul className="examples-ul">
-		<li><a href="./pages/default.html">Default theme</a></li>
-		<li><a href="./pages/custom.html">Custom theme</a></li>
-	</ul>,
+	<div className="examples-container">
+		<ImagesUploader />
+	</div>,
 	document.getElementById('root')
 );

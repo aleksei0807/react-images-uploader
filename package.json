@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-dir lib && webpack && cd ./examples/ && webpack && cd ../ && gulp",
+    "build": "babel src --out-dir lib && webpack && gulp && cd ./examples/ && webpack",
     "watch-styles": "gulp watch",
     "watch-examples": "cd ./examples/ && webpack --watch",
     "dev-server": "cd ./hot-reload && webpack-dev-server --history-api-fallback --config webpack.config.js"

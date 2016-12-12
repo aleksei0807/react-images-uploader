@@ -18,8 +18,6 @@ const postCssLoader = [
 module.exports = {
     entry: {
         'index': "./src/index.jsx",
-		'default': "./src/default.jsx",
-		'custom': "./src/custom.jsx"
     },
 
 	output: {
@@ -59,8 +57,14 @@ module.exports = {
 		  },
 		  {
 			  test: /\.css$/,
-			  loader: postCssLoader.join('')
-		  }, {
+			  loader: postCssLoader.join(''),
+			  exclude: /styles\.css$/,
+		  },
+		  {
+			  test: /styles\.css$/,
+			  loader: 'style-loader!css-loader',
+		  },
+		  {
 			  test: /\.png$/,
 			  loader: "file-loader?name=/images/[hash].[ext]"
 		  }, {

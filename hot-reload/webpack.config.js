@@ -74,7 +74,7 @@ module.exports = {
 		  },
 		  {
 			  test: /\.css$/,
-			  loaders: ['style-loader', postCssLoader.join('')],
+			  loader: 'style-loader!css-loader',
 		  }, {
 			  test: /\.png$/,
 			  loader: "file-loader?name=/images/[hash].[ext]"

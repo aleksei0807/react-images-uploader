@@ -30,17 +30,10 @@ var processors = [
 ];
 
 gulp.task('styles', function () {
-  return gulp.src('./src/styles/*.css')
+  return gulp.src('./src/styles/styles.css')
     .pipe(postcss(processors))
-    .pipe(gulp.dest('./styles'))
+    .pipe(gulp.dest('./'))
     .pipe(gulp.dest('./examples/build'));
-});
-
-gulp.task('themes', function () {
-  return gulp.src('./src/styles/themes/**/*.css')
-    .pipe(postcss(processors))
-    .pipe(gulp.dest('./styles/themes'))
-    .pipe(gulp.dest('./examples/build/themes'));
 });
 
 gulp.task('examples-page-styles', function () {
@@ -49,8 +42,8 @@ gulp.task('examples-page-styles', function () {
     .pipe(gulp.dest('./examples'));
 });
 
-gulp.task('default', ['styles', 'themes', 'examples-page-styles']);
+gulp.task('default', ['styles', 'examples-page-styles']);
 
 gulp.task('watch', function () {
-	gulp.watch(['./styles/*.css', './styles/themes/**/*.css', './examples/src/style.css'], ['default']);
+	gulp.watch(['./styles/*.css', './examples/src/style.css'], ['default']);
 });
