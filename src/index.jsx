@@ -16,13 +16,13 @@ class ImagesUploader extends Component {
 		optimisticPreviews: Array<string>;
 		displayNotification: boolean;
 	};
-	input: null|HTMLInputElement;
+	input: ?HTMLInputElement;
 
 	constructor(props: Object) {
 		super(props);
 		let imagePreviewUrls = [];
-		if (this.props.multiple !== false) {
-			imagePreviewUrls = this.props.images;
+		if (this.props.images && this.props.multiple !== false) {
+			imagePreviewUrls = this.props.images || [];
 		}
 		if (this.props.image && this.props.multiple === false) {
 			imagePreviewUrls = [this.props.image];
@@ -134,7 +134,7 @@ class ImagesUploader extends Component {
 									display: this.state.displayNotification ? 'block' : 'none',
 								}}>
 								<span>
-									{this.props.notification || 'Загрузить другое изображение'}
+									{this.props.notification || this.buildPlus('#fafafa')}
 								</span>
 							</div>}
 						</div>
@@ -333,7 +333,7 @@ class ImagesUploader extends Component {
 		}
 	}
 
-	buildPlus() {
+	buildPlus(color?: string) {
 		/* eslint-disable max-len */
 		return (
 			<svg
@@ -341,8 +341,7 @@ class ImagesUploader extends Component {
 				xmlns="http://www.w3.org/2000/svg"
 				style={{
 					width: 35,
-					fill: '#142434',
-					color: '#142434',
+					fill: color || '#142434',
 				}}
 				xmlnsXlink="http://www.w3.org/1999/xlink"
 				x="0px"
