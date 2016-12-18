@@ -4,3 +4,4 @@ webpack.config.js
 build
 examples
 .tern-project
+server

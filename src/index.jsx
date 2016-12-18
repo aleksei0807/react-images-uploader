@@ -39,7 +39,7 @@ export default class ImagesUploader extends Component {
 		disabledBorderColor: PropTypes.string,
 		notificationBgColor: PropTypes.string,
 		notificationColor: PropTypes.string,
-		closeElement: PropTypes.oneOfType([
+		deleteElement: PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.element,
 		]),
@@ -160,7 +160,7 @@ export default class ImagesUploader extends Component {
 			disabledBorderColor,
 			notificationBgColor,
 			notificationColor,
-			closeElement,
+			deleteElement,
 			plusElement,
 		} = this.props;
 
@@ -215,7 +215,7 @@ export default class ImagesUploader extends Component {
 									e.preventDefault();
 									this.deleteImage(key);
 								}}>
-								{closeElement
+								{deleteElement
 								|| (<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
 									<path
 										id="X_Icon"
@@ -327,7 +327,7 @@ export default class ImagesUploader extends Component {
 						const err = {
 							message: 'invalid response type',
 							response,
-							fileName: 'ImagesLoader',
+							fileName: 'ImagesUploader',
 						};
 						this.setState({
 							loadState: 'error',
@@ -341,7 +341,7 @@ export default class ImagesUploader extends Component {
 					const err = {
 						message: 'server error',
 						status: response ? response.status : false,
-						fileName: 'ImagesLoader',
+						fileName: 'ImagesUploader',
 					};
 					this.setState({
 						loadState: 'error',
@@ -418,7 +418,7 @@ export default class ImagesUploader extends Component {
 				const err = {
 					message: 'file type error',
 					type: file.type,
-					fileName: 'ImagesLoader',
+					fileName: 'ImagesUploader',
 				};
 				if (onLoadEnd && typeof onLoadEnd === 'function') {
 					onLoadEnd(err);
@@ -533,7 +533,7 @@ export default class ImagesUploader extends Component {
 			disabledColor,
 			borderColor,
 			disabledBorderColor,
-			closeElement,
+			deleteElement,
 		} = this.props;
 
 		if (multiple !== false) {
@@ -559,7 +559,7 @@ export default class ImagesUploader extends Component {
 				e.preventDefault();
 				this.deleteImage(0);
 			}}>
-			{closeElement || (<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
+			{deleteElement || (<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
 				<path
 					id="X_Icon"
 					data-name="X Icon"
