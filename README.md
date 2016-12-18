@@ -96,7 +96,7 @@ app.listen(9090, () => {
 - `classNamespace: string` - namespace for all classNames (`default: 'iu-'`);
 - `inputId: string` - id and name for hidden input type file. Used for htmlFor in label (`default: 'filesInput'`);
 - `label: string` - label text;
-- `images: Array` - an array of references to the already uploaded image;
+- `images: Array` - an array of references to the already uploaded images;
 - `disabled: boolean`;
 - `onLoadStart: function()` - callback, which is called when the download starts;
 - `onLoadEnd: function(error: { message: string, ... }, response?: JSON)`
@@ -104,23 +104,23 @@ app.listen(9090, () => {
 	Error messages:
 	- `invalid response type` - additional params: response, fileName (imagesUploader);
 	- `server error` - additional params: status (response status), fileName (imagesUploader);
-	- `exceeded the number` - if there property max and number of files > max;
+	- `exceeded the number` - if there is `max` property and files count > max;
 	- `file type error` - additional params: type (file type), fileName (imagesUploader);
 
-- `deleteImage: function(key: number)` - callback, which is called when the delete image from list;
-- `optimisticPreviews: boolean` - inclusion optimistic previews `default: false`;
-- `multiple: boolean` - off multiple mode `default: true`!;
-- `image: string` - this prop works with only off multiple mode! already loaded picture;
-- `notification: string` - this prop works with only off multiple mode! notification text;
-- `max: number` - the maximum number of pictures for a single download;
+- `deleteImage: function(key: number)` - callback wich called when image deleted from the list;
+- `optimisticPreviews: boolean` - enables optimistic previews `default: false`;
+- `multiple: boolean` - allows to upload a bunch of images !`default: true`!;
+- `image: string` - this property works only when multiple: false! already loaded picture;
+- `notification: string` - this property works only with multiple: false! notification text;
+- `max: number` - the maximum number of pictures for a single upload;
 - `color: string` - color for text and svg `default: '#142434'`;
 - `disabledColor: string` - color for text and svg in disabled mode `default: '#bec3c7'`;
 - `borderColor: string` - border color `default: '#a9bac8'`;
 - `disabledBorderColor: string` - border color in disabled mode `default: '#bec3c7'`;
 - `notificationBgColor: string` - background color for notification `default: 'rgba(0, 0, 0, 0.3)'`;
 - `notificationColor: string` - text and svg color for notification `default: '#fafafa'`;
-- `deleteElement: string|element` - element to delete images;
-- `plusElement: string|element` - element to add images;
+- `deleteElement: string|element` - element for removing images;
+- `plusElement: string|element` - element for adding images;
 ```
 classNames: {
 	container: string,
