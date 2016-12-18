@@ -94,7 +94,7 @@ app.listen(9090, () => {
 
 - `url: string` - server url;
 - `classNamespace: string` - namespace for all classNames (`default: 'iu-'`);
-- `inputId: string` - id and name for hidden input type file. Usage for htmlFor in label (`default: 'filesInput'`);
+- `inputId: string` - id and name for hidden input type file. Used for htmlFor in label (`default: 'filesInput'`);
 - `label: string` - label text;
 - `images: Array` - an array of references to the already uploaded image;
 - `disabled: boolean`;
