@@ -11,7 +11,6 @@
   "dependencies": {
     "cors-prefetch-middleware": "^1.0.0",
     "express": "^4.14.0",
-    "images-upload-middleware": "^1.0.0",
-    "multiparty": "^4.1.2"
+    "images-upload-middleware": "^1.0.2"
   }
 }

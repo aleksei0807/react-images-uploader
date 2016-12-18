@@ -4,7 +4,6 @@ console.log("Listening on", PORT);
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const functions = require('postcss-functions');
 const precss = require('precss');
 const atImport = require("postcss-import");
 const easyImport = require('postcss-easy-import');
@@ -94,14 +93,7 @@ module.exports = {
 				plugins: [easyImport],
 			}),
 			autoprefixer,
-			precss({
-				variables: {
-					variables: require('../src/styles/vars.css')
-				}
-			}),
-			functions({
-				functions: require('../src/styles/funcs.css')
-			})
+			precss()
 		];
 	},
 	devServer: {

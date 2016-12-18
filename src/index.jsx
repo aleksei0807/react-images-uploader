@@ -8,7 +8,7 @@ import Button from 'react-progress-button';
 import 'babel-core/register';
 import 'babel-polyfill';
 
-class ImagesUploader extends Component {
+export default class ImagesUploader extends Component {
 	/* eslint-disable react/sort-comp */
 	state: {
 		imagePreviewUrls: Array<string>;
@@ -17,6 +17,78 @@ class ImagesUploader extends Component {
 		displayNotification: boolean;
 	};
 	input: ?HTMLInputElement;
+
+	static propTypes = {
+		url: PropTypes.string.isRequired,
+		classNamespace: PropTypes.string,
+		inputId: PropTypes.string,
+		label: PropTypes.string,
+		images: PropTypes.array,
+		disabled: PropTypes.bool,
+		onLoadStart: PropTypes.func,
+		onLoadEnd: PropTypes.func,
+		deleteImage: PropTypes.func,
+		optimisticPreviews: PropTypes.bool,
+		multiple: PropTypes.bool,
+		image: PropTypes.string,
+		notification: PropTypes.string,
+		max: PropTypes.number,
+		color: PropTypes.string,
+		disabledColor: PropTypes.string,
+		borderColor: PropTypes.string,
+		disabledBorderColor: PropTypes.string,
+		notificationBgColor: PropTypes.string,
+		notificationColor: PropTypes.string,
+		closeElement: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.element,
+		]),
+		plusElement: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.element,
+		]),
+		classNames: PropTypes.shape({
+			container: PropTypes.string,
+			label: PropTypes.string,
+			deletePreview: PropTypes.string,
+			loadContainer: PropTypes.string,
+			dropzone: PropTypes.string,
+			pseudobutton: PropTypes.string,
+			pseudobuttonContent: PropTypes.string,
+			imgPreview: PropTypes.string,
+			fileInput: PropTypes.string,
+			emptyPreview: PropTypes.string,
+			filesInputContainer: PropTypes.string,
+			notification: PropTypes.string,
+		}),
+		styles: PropTypes.shape({
+			container: PropTypes.object,
+			label: PropTypes.object,
+			deletePreview: PropTypes.object,
+			loadContainer: PropTypes.object,
+			dropzone: PropTypes.object,
+			pseudobutton: PropTypes.object,
+			pseudobuttonContent: PropTypes.object,
+			imgPreview: PropTypes.object,
+			fileInput: PropTypes.object,
+			emptyPreview: PropTypes.object,
+			filesInputContainer: PropTypes.object,
+			notification: PropTypes.object,
+		}),
+	}
+
+	static defaultProps = {
+		classNames: {},
+		styles: {},
+		multiple: true,
+		color: '#142434',
+		disabledColor: '#bec3c7',
+		borderColor: '#a9bac8',
+		disabledBorderColor: '#bec3c7',
+		notificationBgColor: 'rgba(0, 0, 0, 0.3)',
+		notificationColor: '#fafafa',
+		classNamespace: 'iu-',
+	};
 
 	constructor(props: Object) {
 		super(props);
@@ -77,10 +149,28 @@ class ImagesUploader extends Component {
 
 	@autobind
 	buildPreviews(urls: Array<string>, optimisticUrls?: Array<string>, inButton?: boolean) {
-		const { classNamespace = 'iu-' } = this.props;
+		const {
+			classNamespace,
+			disabled,
+			classNames,
+			styles,
+			color,
+			disabledColor,
+			borderColor,
+			disabledBorderColor,
+			notificationBgColor,
+			notificationColor,
+			closeElement,
+			plusElement,
+		} = this.props;
 
 		if ((!urls || urls.length < 1) && (!optimisticUrls || optimisticUrls.length < 1)) {
-			return (<div className={`${classNamespace}emptyPreview`} />);
+			return (
+				<div
+					className={classNames.emptyPreview || `${classNamespace}emptyPreview`}
+					style={styles.emptyPreview}
+					/>
+			);
 		}
 		let previews = [];
 		const multiple = this.props.multiple;
@@ -91,6 +181,7 @@ class ImagesUploader extends Component {
 				if (url) {
 					let imgPreviewStyle = {
 						backgroundImage: `url(${url})`,
+						borderColor: disabled ? disabledBorderColor : borderColor,
 					};
 
 					if (this.props.size) {
@@ -100,26 +191,37 @@ class ImagesUploader extends Component {
 								width: this.props.size,
 								height: this.props.size,
 							},
+							...(styles.imagePreview || {}),
 						};
 					}
 
+					const deletePreviewStyle = {
+						...{
+							color: disabled ? disabledColor : color,
+							borderColor: disabled ? disabledBorderColor : borderColor,
+						},
+						...(styles.deletePreview || {}),
+					};
+
 					return (
 						<div
-							className={`${classNamespace}imgPreview`}
+							className={classNames.imgPreview || `${classNamespace}imgPreview`}
 							key={key}
 							style={imgPreviewStyle}>
 							{!inButton ? <div
-								className={`${classNamespace}deletePreview`}
+								className={classNames.deletePreview || `${classNamespace}deletePreview`}
+								style={deletePreviewStyle}
 								onClick={(e) => {
 									e.preventDefault();
 									this.deleteImage(key);
 								}}>
-								<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
+								{closeElement
+								|| (<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
 									<path
 										id="X_Icon"
 										data-name="X Icon"
 										style={{
-											fill: '#142434',
+											fill: disabled ? disabledColor : color,
 											fillRule: 'evenodd',
 										}}
 										/* eslint-disable max-len */
@@ -127,14 +229,24 @@ class ImagesUploader extends Component {
 										/* eslint-enable max-len */
 										transform="translate(-557 -602)"
 										/>
-								</svg>
+								</svg>)}
 							</div> : <div
-								className={`${classNamespace}notification`}
-								style={{
+								className={classNames.notification || `${classNamespace}notification`}
+								style={styles.notification ? {
+									...styles.notification,
+									...{
+										display: this.state.displayNotification ? 'block' : 'none',
+										backgroundColor: notificationBgColor,
+										color: notificationColor,
+									},
+								} : {
 									display: this.state.displayNotification ? 'block' : 'none',
+									backgroundColor: notificationBgColor,
+									color: notificationColor,
 								}}>
 								<span>
-									{this.props.notification || this.buildPlus('#fafafa')}
+									{this.props.notification
+										|| this.buildPlus(disabled, notificationColor, disabledColor, plusElement)}
 								</span>
 							</div>}
 						</div>
@@ -149,6 +261,7 @@ class ImagesUploader extends Component {
 				if (url) {
 					let imgPreviewStyle = {
 						backgroundImage: `url(${url})`,
+						borderColor: disabled ? disabledBorderColor : borderColor,
 					};
 
 					if (this.props.size) {
@@ -158,12 +271,13 @@ class ImagesUploader extends Component {
 								width: this.props.size,
 								height: this.props.size,
 							},
+							...(styles.imgPreview || {}),
 						};
 					}
 
 					return (
 						<div
-							className={`${classNamespace}imgPreview`}
+							className={classNames.imgPreview || `${classNamespace}imgPreview`}
 							key={length + key}
 							style={imgPreviewStyle}
 							/>
@@ -333,15 +447,20 @@ class ImagesUploader extends Component {
 		}
 	}
 
-	buildPlus(color?: string) {
-		/* eslint-disable max-len */
-		return (
+	/* eslint-disable max-len, no-undef */
+	buildPlus(
+		disabled: boolean,
+		color: string,
+		disabledColor: string,
+		plusElement?: string|React$Element<*>
+	) {
+		return plusElement || (
 			<svg
 				version="1.1"
 				xmlns="http://www.w3.org/2000/svg"
 				style={{
 					width: 35,
-					fill: color || '#142434',
+					fill: disabled ? disabledColor : color,
 				}}
 				xmlnsXlink="http://www.w3.org/1999/xlink"
 				x="0px"
@@ -356,16 +475,35 @@ class ImagesUploader extends Component {
 				</g>
 			</svg>
 		);
-		/* eslint-enable max-len */
 	}
+	/* eslint-enable max-len, no-undef */
 
 	@autobind
 	buildButtonContent() {
-		const { multiple, classNamespace = 'iu-' } = this.props;
+		const {
+			multiple,
+			classNamespace,
+			disabled,
+			classNames,
+			styles,
+			color,
+			disabledColor,
+			plusElement,
+		} = this.props;
+
+		const pseudobuttonContentStyle = {
+			...{
+				color: disabled ? disabledColor : color,
+			},
+			...(styles.pseudobuttonContent),
+		};
+
 		if (multiple !== false) {
 			return (
-				<span className={`${classNamespace}pseudobuttonContent`}>
-					{this.buildPlus()}
+				<span
+					className={classNames.pseudobuttonContent || `${classNamespace}pseudobuttonContent`}
+					style={pseudobuttonContentStyle}>
+					{this.buildPlus(disabled, color, disabledColor, plusElement)}
 				</span>
 			);
 		}
@@ -373,8 +511,10 @@ class ImagesUploader extends Component {
 		if ((!imagePreviewUrls || imagePreviewUrls.length < 1)
 		&& (!optimisticPreviews || optimisticPreviews.length < 1)) {
 			return (
-				<span className={`${classNamespace}pseudobuttonContent`}>
-					{this.buildPlus()}
+				<span
+					className={classNames.pseudobuttonContent || `${classNamespace}pseudobuttonContent`}
+					style={pseudobuttonContentStyle}>
+					{this.buildPlus(disabled, color, disabledColor, plusElement)}
 				</span>
 			);
 		}
@@ -383,7 +523,19 @@ class ImagesUploader extends Component {
 
 	@autobind
 	buildClose() {
-		const { multiple, classNamespace = 'iu-' } = this.props;
+		const {
+			multiple,
+			classNamespace,
+			disabled,
+			classNames,
+			styles,
+			color,
+			disabledColor,
+			borderColor,
+			disabledBorderColor,
+			closeElement,
+		} = this.props;
+
 		if (multiple !== false) {
 			return null;
 		}
@@ -391,31 +543,36 @@ class ImagesUploader extends Component {
 		if (!imagePreviewUrls || imagePreviewUrls.length < 1) {
 			return null;
 		}
+
+		const deletePreviewStyle = {
+			...{
+				color: disabled ? disabledColor : color,
+				borderColor: disabled ? disabledBorderColor : borderColor,
+			},
+			...(styles.deletePreview || {}),
+		};
+
 		return (<div
-			className={`${classNamespace}deletePreview`}
+			className={classNames.deletePreview || `${classNamespace}deletePreview`}
+			style={deletePreviewStyle}
 			onClick={(e) => {
 				e.preventDefault();
 				this.deleteImage(0);
 			}}>
-			<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
-				<defs>
-					<style>
-						{`.cls-1 {
-						fill: #142434;
-						fill-rule: evenodd;
-						}`}
-					</style>
-				</defs>
+			{closeElement || (<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
 				<path
 					id="X_Icon"
 					data-name="X Icon"
-					className="cls-1"
+					style={{
+						fill: disabled ? disabledColor : color,
+						fillRrule: 'evenodd',
+					}}
 					/* eslint-disable max-len */
 					d="M562.036,606l2.849-2.863a0.247,0.247,0,0,0,0-.352l-0.7-.706a0.246,0.246,0,0,0-.352,0l-2.849,2.862-2.849-2.862a0.247,0.247,0,0,0-.352,0l-0.7.706a0.249,0.249,0,0,0,0,.352L559.927,606l-2.849,2.862a0.25,0.25,0,0,0,0,.353l0.7,0.706a0.249,0.249,0,0,0,.352,0l2.849-2.862,2.849,2.862a0.249,0.249,0,0,0,.352,0l0.7-.706a0.25,0.25,0,0,0,0-.353Z"
 					/* eslint-enable max-len */
 					transform="translate(-557 -602)"
 					/>
-			</svg>
+			</svg>)}
 		</div>);
 	}
 
@@ -442,31 +599,83 @@ class ImagesUploader extends Component {
 
 	render() {
 		const { imagePreviewUrls, loadState, optimisticPreviews } = this.state;
-		const { inputId, disabled, multiple, label, size, classNamespace = 'iu-' } = this.props;
+		const {
+			inputId,
+			disabled,
+			multiple,
+			label,
+			size,
+			classNamespace,
+			classNames,
+			styles,
+			color,
+			disabledColor,
+			borderColor,
+			disabledBorderColor,
+		} = this.props;
 
 		const containerClassNames = classnames({
-			[`${classNamespace}container`]: true,
+			[classNames.container || `${classNamespace}container`]: true,
 			disabled,
 		});
 
+		const loadContainerStyle = {
+			...(size ? {
+				width: size,
+				height: size,
+			} : {}),
+			...{
+				color: disabled ? disabledColor : color,
+			},
+			...(styles.loadContainer || {}),
+		};
+
+		const pseudobuttonStyle = {
+			...(size ? {
+				width: size,
+				height: size,
+			} : {}),
+			...{
+				color: disabled ? disabledColor : color,
+			},
+			...(styles.pseudobuttonStyle || {}),
+		};
+
+		const labelStyle = {
+			...{
+				color: disabled ? disabledColor : color,
+			},
+			...(styles.label || {}),
+		};
+
+		const dropzoneStyle = {
+			...{
+				borderColor: disabled ? disabledBorderColor : borderColor,
+			},
+			...(styles.dropzone || {}),
+		};
+
 		return (
-			<div className={containerClassNames}>
+			<div className={containerClassNames} style={styles.container || {}}>
 				<label
-					className={`${classNamespace}label`}
+					className={classNames.label || `${classNamespace}label`}
+					style={labelStyle}
 					htmlFor={inputId || 'filesInput'}>
 					{label || null}
 				</label>
-				<div className={`${classNamespace}filesInputContainer`}>
+				<div
+					className={classNames.filesInputContainer || `${classNamespace}filesInputContainer`}
+					style={styles.filesInputContainer}>
 					<div
-						className={`${classNamespace}loadContainer`}
-						style={size ? {
-							width: size,
-							height: size,
-						} : {}}>
+						className={classNames.loadContainer || `${classNamespace}loadContainer`}
+						style={loadContainerStyle}>
 						{this.buildClose()}
 						<Dropzone
 							onDrop={this.handleFileDrop}
 							disableClick
+							accept="image/*"
+							className={classNames.dropzone || `${classNamespace}dropzone`}
+							style={dropzoneStyle}
 							multiple={
 								/* eslint-disable no-unneeded-ternary */
 								multiple === false ? false : true
@@ -475,12 +684,9 @@ class ImagesUploader extends Component {
 							<Button
 								state={loadState}
 								type="button"
-								className={`${classNamespace}pseudobutton`}
-								style={size ? {
-									width: size,
-									height: size,
-									color: '#142434',
-								} : {}}
+								classNamespace={`${classNamespace}button-`}
+								className={classNames.pseudobutton || `${classNamespace}pseudobutton`}
+								style={pseudobuttonStyle}
 								onClick={(e) => {
 									e.preventDefault();
 									if (this.input) {
@@ -498,14 +704,18 @@ class ImagesUploader extends Component {
 					<input
 						name={inputId || 'filesInput'}
 						id={inputId || 'filesInput'}
-						className={`${classNamespace}fileInput`}
+						className={classNames.fileInput || `${classNamespace}fileInput`}
 						style={{
-							display: 'none',
+							...{
+								display: 'none',
+							},
+							...(styles.fileInput || {}),
 						}}
 						ref={(ref) => {
 							this.input = ref;
 						}}
 						type="file"
+						accept="image/*"
 						multiple={multiple === false ? false : 'multiple'}
 						disabled={disabled || loadState === 'loading'}
 						onChange={this.handleImageChange}
@@ -520,22 +730,3 @@ class ImagesUploader extends Component {
 		);
 	}
 }
-
-ImagesUploader.propTypes = {
-	classNamespace: PropTypes.string,
-	inputId: PropTypes.string,
-	label: PropTypes.string,
-	images: PropTypes.array,
-	disabled: PropTypes.bool,
-	onLoadStart: PropTypes.func,
-	onLoadEnd: PropTypes.func,
-	deleteImage: PropTypes.func,
-	url: PropTypes.string.isRequired,
-	optimisticPreviews: PropTypes.bool,
-	multiple: PropTypes.bool,
-	image: PropTypes.string,
-	notification: PropTypes.string,
-	max: PropTypes.number,
-};
-
-export default ImagesUploader;

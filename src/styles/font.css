@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Bad+Script&subset=cyrillic');
+
+.iu-container {
+	font-family: 'Bad Script', cursive;
+
+	& *  {
+		font-family: 'Bad Script', cursive;
+	}
+}

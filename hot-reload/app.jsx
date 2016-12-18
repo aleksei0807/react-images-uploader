@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ImagesUploader from '../src/index';
 import '../src/styles/styles.css';
+import '../src/styles/font.css';
 
 export default class App extends Component {
 	render() {
@@ -15,6 +16,7 @@ export default class App extends Component {
 							console.error(err);
 						}
 					}}
+					label="Upload multiple images"
 					/>
 				<ImagesUploader
 					url="http://localhost:9090/notmultiple"
@@ -25,6 +27,12 @@ export default class App extends Component {
 							console.error(err);
 						}
 					}}
+					styles={{
+						container: {
+							paddingTop: 15,
+						},
+					}}
+					label="Upload a picture"
 					/>
 			</div>
 		);

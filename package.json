@@ -8,7 +8,9 @@
     "build": "babel src --out-dir lib && webpack && gulp && cd ./examples/ && webpack",
     "watch-styles": "gulp watch",
     "watch-examples": "cd ./examples/ && webpack --watch",
-    "dev-server": "cd ./hot-reload && webpack-dev-server --history-api-fallback --config webpack.config.js"
+    "dev-server": "cd ./hot-reload && webpack-dev-server --history-api-fallback --config webpack.config.js",
+	"build-server": "babel server/src --out-dir server/lib",
+	"start-server": "node server/lib/index.js"
   },
   "repository": {
     "type": "git",

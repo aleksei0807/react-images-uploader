@@ -1,7 +1,6 @@
 /* eslint-disable */
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const functions = require('postcss-functions');
 const precss = require('precss');
 const atImport = require("postcss-import");
 const easyImport = require('postcss-easy-import');
@@ -58,10 +57,10 @@ module.exports = {
 		  {
 			  test: /\.css$/,
 			  loader: postCssLoader.join(''),
-			  exclude: /styles\.css$/,
+			  exclude: /(styles|font)\.css$/,
 		  },
 		  {
-			  test: /styles\.css$/,
+			  test: /(styles|font)\.css$/,
 			  loader: 'style-loader!css-loader',
 		  },
 		  {
@@ -89,14 +88,7 @@ module.exports = {
 				generateScopedName: '[name]__[local]___[hash:base64:5]',
 			}),
 			autoprefixer,
-			precss({
-				variables: {
-					variables: require('./src/styles/vars.css')
-				}
-			}),
-			functions({
-				functions: require('./src/styles/funcs.css')
-			})
+			precss(),
 		];
 	}
 };

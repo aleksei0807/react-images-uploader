@@ -2,7 +2,6 @@
 var gulp = require('gulp');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
-var functions = require('postcss-functions');
 var precss = require('precss');
 var atImport = require("postcss-import");
 var easyImport = require('postcss-easy-import');
@@ -18,19 +17,19 @@ var processors = [
 		generateScopedName: '[name]__[local]___[hash:base64:5]',
 	}),
 	autoprefixer,
-	precss({
-		variables: {
-			variables: require('./src/styles/vars.css')
-		}
-	}),
-	functions({
-		functions: require('./src/styles/funcs.css')
-	}),
+	precss(),
 	cssnano()
 ];
 
 gulp.task('styles', function () {
   return gulp.src('./src/styles/styles.css')
+    .pipe(postcss(processors))
+    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./examples/build'));
+});
+
+gulp.task('font-styles', function () {
+  return gulp.src('./src/styles/font.css')
     .pipe(postcss(processors))
     .pipe(gulp.dest('./'))
     .pipe(gulp.dest('./examples/build'));
@@ -42,8 +41,8 @@ gulp.task('examples-page-styles', function () {
     .pipe(gulp.dest('./examples'));
 });
 
-gulp.task('default', ['styles', 'examples-page-styles']);
+gulp.task('default', ['styles', 'font-styles', 'examples-page-styles']);
 
 gulp.task('watch', function () {
-	gulp.watch(['./styles/*.css', './examples/src/style.css'], ['default']);
+	gulp.watch(['./src/styles/styles.css', './examples/src/style.css', './src/styles/font.css'], ['default']);
 });
