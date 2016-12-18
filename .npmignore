@@ -5,3 +5,4 @@ build
 examples
 .tern-project
 server
+hot-reload
