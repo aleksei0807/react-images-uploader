@@ -1,5 +1,7 @@
 # React Images Uploader
 
+[![NPM](https://nodei.co/npm/react-images-uploader.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-images-uploader/)
+
 React.js component for uploading images to the server
 
 ![Demo](https://cdn.rawgit.com/aleksei0807/react-images-uploader/master/examples/demo.gif "Demo")
