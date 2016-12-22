@@ -92,6 +92,10 @@ app.listen(9090, () => {
 });
 ```
 
+## Other servers
+
+- #### [Server on go](https://github.com/aleksei0807/imagesServer)
+
 ## Props
 
 - `url: string` - server url;
