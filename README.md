@@ -94,7 +94,8 @@ app.listen(9090, () => {
 
 ## Other servers
 
-- [Server on go](https://github.com/aleksei0807/imagesServer)
+- [Server on Go](https://github.com/aleksei0807/imagesServer)
+- [Server on Clojure](https://github.com/aleksei0807/clojure-images-server)
 
 ## Props
 
