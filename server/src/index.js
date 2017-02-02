@@ -5,18 +5,18 @@ import imagesUpload from 'images-upload-middleware';
 
 const app = express();
 
-app.use('/static', express.static('./server/static'));
+app.use('/static', express.static('./static'));
 
 app.use(corsPrefetch);
 
 app.post('/multiple', imagesUpload(
-	'./server/static/multipleFiles',
+	'./static/multipleFiles',
 	'http://localhost:9090/static/multipleFiles',
 	true
 ));
 
 app.post('/notmultiple', imagesUpload(
-	'./server/static/files',
+	'./static/files',
 	'http://localhost:9090/static/files'
 ));
 

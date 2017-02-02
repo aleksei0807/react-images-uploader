@@ -17,13 +17,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 
 
-app.use('/static', _express2.default.static('./server/static'));
+app.use('/static', _express2.default.static('./static'));
 
 app.use(_corsPrefetchMiddleware2.default);
 
-app.post('/multiple', (0, _imagesUploadMiddleware2.default)('./server/static/multipleFiles', 'http://localhost:9090/static/multipleFiles', true));
+app.post('/multiple', (0, _imagesUploadMiddleware2.default)('./static/multipleFiles', 'http://localhost:9090/static/multipleFiles', true));
 
-app.post('/notmultiple', (0, _imagesUploadMiddleware2.default)('./server/static/files', 'http://localhost:9090/static/files'));
+app.post('/notmultiple', (0, _imagesUploadMiddleware2.default)('./static/files', 'http://localhost:9090/static/files'));
 
 app.listen(9090, function () {
 	console.log('Listen: 9090');
@@ -35,7 +35,7 @@ var _temp = function () {
 		return;
 	}
 
-	__REACT_HOT_LOADER__.register(app, 'app', 'server/src/index.js');
+	__REACT_HOT_LOADER__.register(app, 'app', 'src/index.js');
 }();
 
 ;
