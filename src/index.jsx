@@ -20,6 +20,7 @@ export default class ImagesUploader extends Component {
 
 	static propTypes = {
 		url: PropTypes.string.isRequired,
+		dataName: PropTypes.string,
 		classNamespace: PropTypes.string,
 		inputId: PropTypes.string,
 		label: PropTypes.string,
@@ -78,6 +79,7 @@ export default class ImagesUploader extends Component {
 	}
 
 	static defaultProps = {
+		dataName: 'imageFiles',
 		classNames: {},
 		styles: {},
 		multiple: true,
@@ -296,11 +298,12 @@ export default class ImagesUploader extends Component {
 				const imageFormData = new FormData();
 
 				for (let i = 0; i < files.length; i++) {
-					imageFormData.append('imageFiles', files[i], files[i].name);
+					imageFormData.append(this.props.dataName, files[i], files[i].name);
 				}
 
 				let response = await fetch(url, {
 					method: 'POST',
+					credentials: 'include',
 					body: imageFormData,
 				});
 
