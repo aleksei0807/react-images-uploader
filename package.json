@@ -1,6 +1,6 @@
 {
   "name": "react-images-uploader",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "React.js component for uploading images to the server",
   "main": "lib/index.js",
   "scripts": {
@@ -9,8 +9,8 @@
     "watch-styles": "gulp watch",
     "watch-examples": "cd ./examples/ && webpack --watch",
     "dev-server": "cd ./hot-reload && webpack-dev-server --history-api-fallback --config webpack.config.js",
-	"build-server": "babel server/src --out-dir server/lib",
-	"start-server": "node server/lib/index.js"
+    "build-server": "babel server/src --out-dir server/lib",
+    "start-server": "node server/lib/index.js"
   },
   "repository": {
     "type": "git",

@@ -35,7 +35,7 @@ var _temp = function () {
 		return;
 	}
 
-	__REACT_HOT_LOADER__.register(app, 'app', 'src/index.js');
+	__REACT_HOT_LOADER__.register(app, 'app', 'server/src/index.js');
 }();
 
 ;
