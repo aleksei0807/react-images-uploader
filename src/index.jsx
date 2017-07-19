@@ -21,6 +21,7 @@ export default class ImagesUploader extends Component {
 	static propTypes = {
 		url: PropTypes.string.isRequired,
 		dataName: PropTypes.string,
+		headers: PropTypes.object,
 		classNamespace: PropTypes.string,
 		inputId: PropTypes.string,
 		label: PropTypes.string,
@@ -80,6 +81,7 @@ export default class ImagesUploader extends Component {
 
 	static defaultProps = {
 		dataName: 'imageFiles',
+		headers:{},
 		classNames: {},
 		styles: {},
 		multiple: true,
@@ -305,6 +307,7 @@ export default class ImagesUploader extends Component {
 					method: 'POST',
 					credentials: 'include',
 					body: imageFormData,
+					headers: this.props.headers
 				});
 
 				if (response && response.status && response.status === 200) {
