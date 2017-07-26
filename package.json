@@ -1,6 +1,6 @@
 {
   "name": "react-images-uploader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "React.js component for uploading images to the server",
   "main": "lib/index.js",
   "scripts": {
