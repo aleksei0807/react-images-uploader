@@ -114,6 +114,7 @@ export default class ImagesUploader extends Component {
 	/* eslint-enable react/sort-comp */
 
 	componentWillMount() {
+		if(typeof document === 'undefined') return;
 		document.addEventListener('dragover', (event) => {
 			// prevent default to allow drop
 			event.preventDefault();
