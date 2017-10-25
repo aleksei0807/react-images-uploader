@@ -115,6 +115,7 @@ app.listen(9090, () => {
 	- `file type error` - additional params: type (file type), fileName (imagesUploader);
 
 - `deleteImage: function(key: number)` - callback which is called when the image has been deleted from the list;
+- `clickImage: function(key: number)` - callback which is called when the image preview is clicked;
 - `optimisticPreviews: boolean` - enables optimistic previews `default: false`;
 - `multiple: boolean` - allows to upload a bunch of images !`default: true`!;
 - `image: string` - this property works only when multiple: false! already loaded picture;
