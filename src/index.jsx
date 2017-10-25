@@ -235,6 +235,7 @@ export default class ImagesUploader extends Component {
 								style={deletePreviewStyle}
 								onClick={(e) => {
 									e.preventDefault();
+									e.stopPropagation();
 									this.deleteImage(key);
 								}}>
 								{deleteElement
