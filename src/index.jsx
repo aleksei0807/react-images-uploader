@@ -31,6 +31,7 @@ export default class ImagesUploader extends Component {
 		onLoadStart: PropTypes.func,
 		onLoadEnd: PropTypes.func,
 		deleteImage: PropTypes.func,
+		clickImage: PropTypes.func,
 		optimisticPreviews: PropTypes.bool,
 		multiple: PropTypes.bool,
 		image: PropTypes.string,
@@ -138,6 +139,18 @@ export default class ImagesUploader extends Component {
 		}
 	}
 
+	
+	
+	@autobind
+	clickImage(key: number) {
+		if (!this.props.disabled) {
+		    const clickImage = this.props.clickImage;
+		    if (clickImage && typeof clickImage === 'function') {
+                clickImage(key);
+            }
+		}
+	}
+	
 	@autobind
 	deleteImage(key: number) {
 		if (!this.props.disabled) {
@@ -212,7 +225,11 @@ export default class ImagesUploader extends Component {
 						<div
 							className={classNames.imgPreview || `${classNamespace}imgPreview`}
 							key={key}
-							style={imgPreviewStyle}>
+							style={imgPreviewStyle}
+					        onClick={(e) => {
+					            e.preventDefault();
+					            this.clickImage(key)
+					        }}>
 							{!inButton ? <div
 								className={classNames.deletePreview || `${classNamespace}deletePreview`}
 								style={deletePreviewStyle}
