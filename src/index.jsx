@@ -138,20 +138,20 @@ export default class ImagesUploader extends Component {
 		}
 	}
 
-	
-	
+
+
 	@autobind
-	clickImage(key: number) {
+	clickImage(key: number, url: string) {
 		if (!this.props.disabled) {
 		    const clickImage = this.props.clickImage;
 		    if (clickImage && typeof clickImage === 'function') {
-                clickImage(key);
+                clickImage(key, url);
             }
 		}
 	}
-	
+
 	@autobind
-	deleteImage(key: number) {
+	deleteImage(key: number, url: string) {
 		if (!this.props.disabled) {
 			const imagePreviewUrls = this.state.imagePreviewUrls;
 			imagePreviewUrls.splice(key, 1);
@@ -159,7 +159,7 @@ export default class ImagesUploader extends Component {
 				imagePreviewUrls,
 			});
 			if (this.props.deleteImage && typeof this.props.deleteImage === 'function') {
-				this.props.deleteImage(key);
+				this.props.deleteImage(key, url);
 			}
 		}
 	}
@@ -227,7 +227,7 @@ export default class ImagesUploader extends Component {
 							style={imgPreviewStyle}
 					        onClick={(e) => {
 					            e.preventDefault();
-					            this.clickImage(key)
+					            this.clickImage(key, url)
 					        }}>
 							{!inButton ? <div
 								className={classNames.deletePreview || `${classNamespace}deletePreview`}
@@ -235,7 +235,7 @@ export default class ImagesUploader extends Component {
 								onClick={(e) => {
 									e.preventDefault();
 									e.stopPropagation();
-									this.deleteImage(key);
+									this.deleteImage(key, url);
 								}}>
 								{deleteElement
 								|| (<svg xmlns="http://www.w3.org/2000/svg" width="7.969" height="8" viewBox="0 0 7.969 8">
