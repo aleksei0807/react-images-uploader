@@ -143,12 +143,10 @@ export default class ImagesUploader extends Component {
 
 	@autobind
 	clickImage(key: number, url: string) {
-		if (!this.props.disabled) {
-		    const clickImage = this.props.clickImage;
-		    if (clickImage && typeof clickImage === 'function') {
-                clickImage(key, url);
-            }
-		}
+	    const clickImageCallback = this.props.clickImage;
+	    if (clickImageCallback && typeof clickImageCallback === 'function') {
+          clickImageCallback(key, url);
+      }
 	}
 
 	@autobind
