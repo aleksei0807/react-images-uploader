@@ -114,15 +114,19 @@ export default class ImagesUploader extends Component {
 	/* eslint-enable react/sort-comp */
 
 	componentWillMount() {
-		if(typeof document === 'undefined') return;
-		document.addEventListener('dragover', (event) => {
-			// prevent default to allow drop
-			event.preventDefault();
-		}, false);
-		document.addEventListener('drop', (event) => {
-			// prevent default to allow drop
-			event.preventDefault();
-		}, false);
+		// support SSR rendering.
+		// we should not use document on server, so just omit
+		// these calls
+		if (typeof document !== 'undefined') {
+			document.addEventListener('dragover', event => {
+				// prevent default to allow drop
+				event.preventDefault();
+			}, false);
+			document.addEventListener('drop', event => {
+				// prevent default to allow drop
+				event.preventDefault();
+			}, false);
+		}
 	}
 
 	componentWillReceiveProps(nextProps: Object) {
