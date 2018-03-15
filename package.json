@@ -49,6 +49,7 @@
     "babel-polyfill": "^6.20.0",
     "classnames": "^2.2.5",
     "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.5.8",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
     "react-css-modules": "^4.0.3",
