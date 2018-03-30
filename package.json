@@ -1,6 +1,6 @@
 {
   "name": "react-images-uploader",
-  "version": "1.1.1",
+  "version": "1.2.0-rc1",
   "description": "React.js component for uploading images to the server",
   "main": "lib/index.js",
   "scripts": {
@@ -56,7 +56,7 @@
     "react-dom": "^15.4.1",
     "react-dropzone": "^3.7.3",
     "react-hot-loader": "^3.0.0-beta.6",
-    "react-progress-button": "git+https://github.com/aleksei0807/react-progress-button.git"
+    "react-progress-button-for-images-uploader": "^5.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",

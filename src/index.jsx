@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch';
 import autobind from 'autobind-decorator';
 import classnames from 'classnames';
 import Dropzone from 'react-dropzone';
-import Button from 'react-progress-button';
+import Button from 'react-progress-button-for-images-uploader';
 import 'babel-core/register';
 import 'babel-polyfill';
 
