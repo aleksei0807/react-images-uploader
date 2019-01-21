@@ -368,7 +368,7 @@ export default class ImagesUploader extends Component {
 					const err = {
 						message: 'server error',
 						status: response ? response.status : false,
-                        response,
+						response,
 						fileName: 'ImagesUploader',
 					};
 					this.setState({
