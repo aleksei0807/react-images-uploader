@@ -91,7 +91,7 @@
     "eslint-plugin-react": "^6.0.0",
     "file-loader": "^0.9.0",
     "flow-bin": "^0.36.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-postcss": "^6.2.0",
     "gulp-stylus": "^2.3.1",
     "html-webpack-plugin": "^2.24.1",
